@@ -1,10 +1,8 @@
-def check_prime(num)
-  i = 2
-  while i < num
-    return false if num % i == 0
-    i += 1
-  end
-  true
+def is_prime?(num)
+    n=num.floor
+    return false if n < 2
+    max=Math.sqrt(n).floor
+    (2..max).none?{|k| 0==n % k}
 end
 
 def largest_prime_factor(num)
@@ -12,7 +10,7 @@ def largest_prime_factor(num)
   return ans if num <= 2
   i = 2
   while i <= num
-    if num % i == 0 && check_prime(i)
+    if num % i == 0 && is_prime?(i)
       ans = [ans, i].max
     end
     i += 1
@@ -20,6 +18,6 @@ def largest_prime_factor(num)
   ans
 end
 
-puts largest_prime_factor(10)
-puts largest_prime_factor(17)
-puts largest_prime_factor(13195)
+puts largest_prime_factor(10) == 5
+puts largest_prime_factor(17) == 17
+puts largest_prime_factor(13195) == 29

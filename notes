@@ -1,0 +1,137 @@
+var nowFunc = function(stringThing) {
+  console.log(stringThing);
+}
+var waitPeriod = 3000;
+var throttledFunc = myThrottle(nowFunc, waitPeriod);
+
+// call                // milli //behavior
+throttledFunc('now!', 'arg', '123', '1231231231'); // 0     // log
+throttledFunc('now!'); // 1000  // not log
+throttledFunc('now!'); // 1500  // not log
+throttledFunc('now!'); // 3000  // log
+throttledFunc('now!'); // 4000  // not log
+
+function myThrottle(func, wait) {
+    var start_time;
+    // check if the time has pass the wait time
+    return function() {
+      if (!start_time || (Date.now - start_time) >= wait) {
+        start_time = Date.now();
+        return func.apply(this, arguments);
+      }
+    }
+};
+
+
+function Throttle() {
+  this.startTime = undefined;
+}
+
+Throttle.prototype.callIt = function() {
+
+}
+
+// Date.now()
+// 1471986652077
+
+
+function hiThere() {
+  return 5;
+}
+
+console.log(hiThere());
+
+
+
+
+
+
+function outer() {
+ var someVar = 3;
+
+ var returnFunc = function inner() {
+   console.log(someVar++);
+ }
+
+ return returnFunc;
+}
+
+var isFunc = outer();
+
+isFunc();
+isFunc();
+isFunc();
+isFunc();
+isFunc();
+isFunc();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// input ->  string className
+// output -> array nodesWithClassName
+
+var checkNode = function(node, className) {
+    var result = [];
+    var childNodes = node.childNode();
+    if (node.classList.contains(className)) {
+        result.push(node);
+    }
+    for (var i = 0; i < childNodes.length; i++) {
+       result = result.concat(checkNode(childNodes[i]));
+    }
+    return result;
+}
+
+function getElementsByClassName(className) {
+    var result = [];
+    var node = document.body;
+    result = result.concat(checkNode(node, className));
+    return result;
+}
+
+// 1. check if current node contains the classname. Push it to result array
+// 2. get a list of the childnodes of the current node.
+// 3. iterate all of them and call the check element func on that node.
+
+
+
+
